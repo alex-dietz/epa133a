@@ -83,14 +83,14 @@ var Simple_Continuous_Module = function(canvas_width, canvas_height) {
 	// Create the tag:
 	var canvas_tag = "<canvas width='" + canvas_width + "' height='" + canvas_height + "' ";
 	canvas_tag += "style='border:1px dotted'></canvas>";
-
+	
 	var parent_div_tag = '<div style="height:' + canvas_height + 'px;" class="world-grid-parent" target="_sim"></div>'
-
+	
 	// Append it to body:
 	var canvas = $(canvas_tag)[0];
-
+	
 	var parent = $(parent_div_tag)[0];
-
+	
 	//$("body").append(canvas);
 	$("#elements").append(parent);
 	parent.append(canvas);
