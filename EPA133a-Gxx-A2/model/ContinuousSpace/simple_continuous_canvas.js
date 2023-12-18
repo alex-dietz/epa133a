@@ -103,6 +103,7 @@ var Simple_Continuous_Module = function (canvas_width, canvas_height) {
     canvasDraw = new ContinuousVisualization(canvas_width, canvas_height, context);
   }
   loadJQuery(initialize);
+
   this.render = function (data) {
     canvasDraw.resetCanvas();
     canvasDraw.draw(data);
