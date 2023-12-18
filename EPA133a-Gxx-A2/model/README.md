@@ -11,7 +11,7 @@ Version:
 
 ## Introduction
 
-A simple transport model demo in MESA for EPA1352 Advanced Simulation course Assignment 2.
+A simple transport model demo in MESA for EPA133a Advanced Simulation course Assignment 2.
 
 ## How to Use
 
