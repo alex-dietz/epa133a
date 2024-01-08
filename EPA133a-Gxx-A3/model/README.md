@@ -29,7 +29,7 @@ In PyCharm, you can create a virtual environment by following the steps below:
     8. Click OK and also close the settings with OK
 
 Afterwards, you should see "Python 3.11" (epa133a) in the bottom-right corner of the PyCharm window.
-TO install the requirements, open a terminal/command line window in PyCharm and type:
+To install the requirements, open a terminal/command line window in PyCharm and type:
 
 ```
     $ pip install -r requirements.txt
