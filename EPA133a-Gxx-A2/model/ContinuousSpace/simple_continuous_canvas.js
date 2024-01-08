@@ -1,12 +1,3 @@
-// Function to dynamically load jQuery
-function loadJQuery(callback) {
-  var script = document.createElement("script");
-  script.type = "text/javascript";
-  script.src = "https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"; // URL to jQuery library
-  script.onload = callback; // Callback after jQuery has loaded
-  document.head.appendChild(script);
-}
-
 var ContinuousVisualization = function (height, width, context) {
   var height = height;
   var width = width;
@@ -79,30 +70,43 @@ var ContinuousVisualization = function (height, width, context) {
 };
 
 var Simple_Continuous_Module = function (canvas_width, canvas_height) {
-  var canvasDraw;
   // Create the element
   // ------------------
-  function initialize() {
-    // Create the tag:
-    var canvas_tag = "<canvas width='" + canvas_width + "' height='" + canvas_height + "' ";
-    canvas_tag += "style='border:1px dotted'></canvas>";
 
-    var parent_div_tag = '<div style="height:' + canvas_height + 'px;" class="world-grid-parent" target="_sim"></div>';
+  // ORIGINAL CODE:
+  // // Create the tag:
+  // var canvas_tag = "<canvas width='" + canvas_width + "' height='" + canvas_height + "' ";
+  // canvas_tag += "style='border:1px dotted'></canvas>";
+  // var parent_div_tag = '<div id="parent" style="height:' + canvas_height + 'px;" class="world-grid-parent" target="_sim"></div>'
+  // // Append it to body:
+  // var canvas = $(canvas_tag)[0];
+  // var parent = $(parent_div_tag)[0];
+  // //$("body").append(canvas);
+  // $("#elements").append(parent);
+  // parent.append(canvas);
 
-    // Append it to body:
-    var canvas = $(canvas_tag)[0];
+  // FIXED CODE (If you are getting Javascript '$ not defined' error)
+  // Create Canvas object
+  const canvas = document.createElement("canvas");
+  canvas.setAttribute("width", canvas_width);
+  canvas.setAttribute("height", canvas_height);
+  canvas.setAttribute("style", "border:1px dotted");
 
-    var parent = $(parent_div_tag)[0];
+  // Create Parent object
+  const parent_div = document.createElement("div");
+  let parent_style = "height:" + canvas_height + "px;";
+  parent_div.setAttribute("style", parent_style);
+  parent_div.setAttribute("class", "world-grid-parent");
+  parent_div.setAttribute("target", "_sim");
 
-    //$("body").append(canvas);
-    $("#elements").append(parent);
-    parent.append(canvas);
+  // Add both to document
+  let elements_div = document.getElementById("elements");
+  elements_div.appendChild(parent_div);
+  parent_div.appendChild(canvas);
 
-    // Create the context and the drawing controller:
-    var context = canvas.getContext("2d");
-    canvasDraw = new ContinuousVisualization(canvas_width, canvas_height, context);
-  }
-  loadJQuery(initialize);
+  // Create the context and the drawing controller:
+  var context = canvas.getContext("2d");
+  var canvasDraw = new ContinuousVisualization(canvas_width, canvas_height, context);
 
   this.render = function (data) {
     canvasDraw.resetCanvas();
